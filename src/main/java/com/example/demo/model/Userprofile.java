@@ -1,35 +1,76 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping
+import java.time.LocalDateTime;
+
+
 @Entity
-@Table(name ="userprofile")
+//@EntityListeners(AuditingEntityListener.class)
+@Table(name ="USER_PROFILE")
 public class Userprofile {
 
     @Id
     @Column
     private Integer id;
+    @Column
     private String name;
+    @Column
     private String email;
+   // @CreatedDate
+    private LocalDateTime createdAt;
 
-    public Userprofile(Integer id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
+    //@LastModifiedDate
+    private LocalDateTime updatedAt;
+
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public Userprofile() {
-        this.id = id;
-        this.name = name;
-        this.email = email;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+   // @CreatedBy
+    private String createdBy="Bharath";
+
+    //@LastModifiedBy
+    private String updatedBy="Bharath";
+
+
+
+
 
     public Integer getId() {
         return id;
